@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Loteria {
+    private int qtdDezenas;
+    private int[] resultado;
+    private int totalJogos;
+    private int jogos;
+
+
+    Loteria(int qtdDezenas, int totalJogos){
+        if((qtdDezenas > 5) && (qtdDezenas < 10)){
+            this.qtdDezenas = qtdDezenas;
+        }
+        this.totalJogos = totalJogos;
+    }
+
+
+
+    public int getJogos() {
+        return jogos;
+    }
+
+    public int getQtdDezenas() {
+        return qtdDezenas;
+    }
+
+    public int[] getResultado() {
+        return resultado;
+    }
+
+    public int getTotalJogos() {
+        return totalJogos;
+    }
+
+    public void setQtdDezenas(int qtdDezenas) {
+        this.qtdDezenas = qtdDezenas;
+    }
+
+    public void setResultado(int[] resultado) {
+        this.resultado = resultado;
+    }
+
+    public void setJogos(int jogos) {
+        this.jogos = jogos;
+    }
+
+    public void setTotalJogos(int totalJogos) {
+        this.totalJogos = totalJogos;
+    }
+
+    private int[] dezenas(){
+        int[] dezenas = new int[this.getQtdDezenas()];
+        Random gerador = new Random();
+
+        for(int i = 0; i < this.getQtdDezenas(); i++){
+            dezenas[i] =  gerador.nextInt(60);
+        }
+        return dezenas;
+    }
+
+    public  int[][] jogo(){
+        int [][] jogo = new int[this.getTotalJogos()][this.getQtdDezenas()];
+        for(int i = 0; i < this.getTotalJogos(); i++){
+            jogo[i] = this.dezenas();
+        }
+        return jogo;
+    }
+
+    public void realizarSorteio(){
+        int[] numeros = new int[6];
+        Random gerador = new Random();
+
+        for(int i = 0; i < 6; i++){
+            numeros[i] =  gerador.nextInt(60);
+        }
+
+        this.setResultado(numeros);
+    }
+
+}
